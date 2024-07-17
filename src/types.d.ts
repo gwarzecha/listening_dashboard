@@ -1,4 +1,4 @@
-interface UserProfile {
+export interface UserProfile {
   country: string;
   display_name: string;
   email: string;
@@ -16,8 +16,15 @@ interface UserProfile {
   uri: string;
 }
 
-interface Image {
+export interface Image {
   url: string;
   height: number;
   width: number;
+}
+
+export interface SpotifyArtist {
+  name: string;
+  images: { url: string }[];
+  genres: string[];
+  external_urls: { spotify: string };
 }
