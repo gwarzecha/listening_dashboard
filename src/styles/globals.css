@@ -13,3 +13,7 @@ html, body, #__next {
   height: 100%;
   background-color: #6B7280; 
 }
+
+.nav-gradient {
+  background: linear-gradient(to bottom, #4B5563 75%, transparent 100%);
+}

@@ -4,6 +4,7 @@ import { SpotifyArtist, UserProfile } from '../types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import LogoutButton from '../app/components/LogoutButton';
+import Nav from '../app/components/Nav';
 
 const Profile = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -36,6 +37,9 @@ const Profile = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
+            params: {
+              limit: 12,
+            },
           }
         );
         setTopArtists(artistsResponse.data.items);
@@ -55,66 +59,40 @@ const Profile = () => {
   if (!profile) return <div>Loading...</div>;
 
   return (
-    <div className="p-4 ">
-      <div className="flex flex-col sm:flex-row justify-evenly items-center">
-        <div className="flex flex-row items-center space-x-4">
-          {profile.images.length > 0 && (
-            <img
-              className="rounded-full w-25 h-25 object-cover hidden sm:block"
-              src={profile.images[0].url}
-              alt="Profile Image"
-            />
-          )}
-          <h1 className="text-xl font-bold sm:mb-0 mb-4 font-sourcecode">
-            Logged in as {profile.display_name}
-          </h1>
-        </div>
+    <>
+      <Nav profile={profile} />
+      <div className="p-4 ">
+        <h2 className="mt-20 mb-4 text-xl font-semibold  font-sourcecode">
+          Top Artists
+        </h2>
 
-        <a
-          href={profile.uri}
-          className="text-gray-900 mb-2 sm:mb-0 font-semibold font-firacode"
-        >
-          Open Spotify App
-        </a>
-        <a
-          href={profile.external_urls.spotify}
-          className="text-gray-900 mb-2 sm:mb-0 font-semibold font-firacode"
-        >
-          Open Spotify in your browser
-        </a>
-      </div>
-
-      <div className="flex flex-row justify-between items-center mt-8 mb-4">
-        <h2 className="text-xl font-semibold  font-sourcecode">Top Artists</h2>
-        <LogoutButton />
-      </div>
-
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {topArtists.map((artist) => (
-          <li
-            key={artist.name}
-            className="p-4 border rounded shadow flex flex-col items-center"
-          >
-            <h3 className="text-lg font-bold font-inconsolata">
-              {artist.name}
-            </h3>
-            {artist.images.length > 0 && (
-              <img
-                src={artist.images[1].url}
-                alt={`${artist.name} Image`}
-                className="w-32 h-32 object-cover rounded-full"
-              />
-            )}
-            <a
-              href={artist.external_urls.spotify}
-              className="text-gray-900 p-2 font-firacode"
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {topArtists.map((artist) => (
+            <li
+              key={artist.name}
+              className="p-4 border rounded shadow flex flex-col items-center"
             >
-              Listen
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+              <h3 className="text-lg font-bold font-inconsolata">
+                {artist.name}
+              </h3>
+              {artist.images.length > 0 && (
+                <img
+                  src={artist.images[1].url}
+                  alt={`${artist.name} Image`}
+                  className="w-32 h-32 object-cover rounded-full"
+                />
+              )}
+              <a
+                href={artist.external_urls.spotify}
+                className="text-gray-900 p-2 font-firacode"
+              >
+                Listen
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
