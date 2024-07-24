@@ -70,7 +70,7 @@ const Profile = () => {
           {topArtists.map((artist) => (
             <li
               key={artist.name}
-              className="p-4 border rounded shadow flex flex-col items-center"
+              className="p-4  rounded shadow-lg flex flex-col items-center"
             >
               <h3 className="text-lg font-bold font-inconsolata">
                 {artist.name}
