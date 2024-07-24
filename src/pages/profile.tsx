@@ -39,32 +39,35 @@ const Profile = () => {
 
   return (
     <div className="p-4 bg-gray-500">
-      <div className="flex flex-row justify-between items-center">
-        <h1 className="text-2xl font-bold mb-4 font-sourcecode">
-          Logged in as {profile.display_name}
-        </h1>
-        {profile.images.length > 0 && (
-          <img
-            className="rounded-full w-32 h-32 object-cover"
-            src={profile.images[0].url}
-            alt="Profile Image"
-          />
-        )}
+      <div className="flex flex-col sm:flex-row justify-evenly items-center">
+        <div className="flex flex-row items-center space-x-4">
+          {profile.images.length > 0 && (
+            <img
+              className="rounded-full w-25 h-25 object-cover hidden sm:block"
+              src={profile.images[0].url}
+              alt="Profile Image"
+            />
+          )}
+          <h1 className="text-xl font-bold sm:mb-0 mb-4 font-sourcecode">
+            Logged in as {profile.display_name}
+          </h1>
+        </div>
+
+        <a
+          href={profile.uri}
+          className="text-gray-900 mb-2 sm:mb-0 font-semibold font-firacode"
+        >
+          Open Spotify App
+        </a>
+        <a
+          href={profile.external_urls.spotify}
+          className="text-gray-900 mb-2 sm:mb-0 font-semibold font-firacode"
+        >
+          Open Spotify in your browser
+        </a>
       </div>
 
-      <ul className="list-disc list-inside">
-        <li>
-          <a href={profile.uri} className="text-blue-500">
-            Open Spotify App
-          </a>
-        </li>
-        <li>
-          <a href={profile.external_urls.spotify} className="text-blue-500">
-            Open Spotify in the browser
-          </a>
-        </li>
-      </ul>
-      <h2 className="text-xl font-semibold mt-8 font-sourcecode">
+      <h2 className="text-xl font-semibold mt-8 font-sourcecode mb-4">
         Top Artists
       </h2>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -83,8 +86,10 @@ const Profile = () => {
                 className="w-32 h-32 object-cover rounded-full"
               />
             )}
-
-            <a href={artist.external_urls.spotify} className="text-blue-500">
+            <a
+              href={artist.external_urls.spotify}
+              className="text-gray-900 p-2 font-firacode"
+            >
               Listen
             </a>
           </li>
