@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   content: [
@@ -6,7 +7,14 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sourcecode: ['var(--font-sourcecode)', 'monospace'],
+        firacode: ['var(--font-firacode)', 'monospace'],
+        inconsolata: ['var(--font-inconsolata)', 'monospace'],
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

@@ -3,7 +3,7 @@ import LoginButton from './components/LoginButton';
 
 const Login = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-500 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-500 font-sourcecode p-4">
       <h1 className="text-3xl font-bold mb-4">Login with Spotify</h1>
       <LoginButton />
     </div>

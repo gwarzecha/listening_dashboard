@@ -17,7 +17,11 @@ const LoginButton = () => {
     window.location.href = `https://accounts.spotify.com/authorize?${params.toString()}`;
   };
 
-  return <button onClick={authorize}>Login</button>;
+  return (
+    <button className="outline p-2" onClick={authorize}>
+      Login
+    </button>
+  );
 };
 
 export default LoginButton;
