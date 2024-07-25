@@ -18,7 +18,10 @@ const LoginButton = () => {
   };
 
   return (
-    <button className="outline p-2" onClick={authorize}>
+    <button
+      className="outline p-1 bg-gray-600 font-sourcecode"
+      onClick={authorize}
+    >
       Login
     </button>
   );

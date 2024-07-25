@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedToken) {
       setToken(storedToken);
     }
-    setLoading(false); // Set loading to false after checking localStorage
+    setLoading(false); 
   }, []);
 
   return (

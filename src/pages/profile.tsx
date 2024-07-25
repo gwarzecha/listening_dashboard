@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { SpotifyArtist, UserProfile } from '../types';
+import { SpotifyArtist, UserProfile, SpotifyTrack } from '../types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import LogoutButton from '../app/components/LogoutButton';
@@ -9,6 +9,8 @@ import Nav from '../app/components/Nav';
 const Profile = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [topArtists, setTopArtists] = useState<SpotifyArtist[]>([]);
+  const [topTracks, setTopTracks] = useState<SpotifyTrack[]>([]);
+
   const router = useRouter();
   const { token, loading } = useAuth();
 
@@ -43,6 +45,19 @@ const Profile = () => {
           }
         );
         setTopArtists(artistsResponse.data.items);
+
+        const tracksResponse = await axios.get(
+          'https://api.spotify.com/v1/me/top/tracks',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              limit: 10,
+            },
+          }
+        );
+        setTopTracks(tracksResponse.data.items);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           if (error.response?.status === 401) {
@@ -61,8 +76,8 @@ const Profile = () => {
   return (
     <>
       <Nav profile={profile} />
-      <div className="p-4 ">
-        <h2 className="mt-20 mb-4 text-xl font-semibold  font-sourcecode">
+      <div className="px-4 py-8 ">
+        <h2 className="mt-20 mb-4 text-xl font-semibold font-sourcecode text-center sm:text-left">
           Top Artists
         </h2>
 
@@ -91,6 +106,25 @@ const Profile = () => {
             </li>
           ))}
         </ul>
+
+        <h2 className="mt-20 mb-4 text-xl font-semibold font-sourcecode text-center sm:text-left">
+          Top Tracks
+        </h2>
+        {topTracks.map((track) => (
+          <ul>
+            <li
+              key={track.name}
+              className="flex flex-col sm:flex-row items-center space-x-3"
+            >
+              <h3 className=" text-l font-semibold font-inconsolata">
+                {track.name}
+              </h3>
+              <h3 className="sm:mb-0 mb-4 text-sm font-semibold font-firacode">
+                {track.artists[0].name}
+              </h3>
+            </li>
+          </ul>
+        ))}
       </div>
     </>
   );

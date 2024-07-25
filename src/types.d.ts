@@ -28,3 +28,13 @@ export interface SpotifyArtist {
   genres: string[];
   external_urls: { spotify: string };
 }
+
+export interface SpotifyTrack {
+  name: string;
+  artists: SpotifyArtist[];
+  album: {
+    name: string;
+    images: { url: string }[];
+  };
+  external_urls: { spotify: string };
+}
