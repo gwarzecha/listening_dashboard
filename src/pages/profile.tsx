@@ -76,7 +76,7 @@ const Profile = () => {
   return (
     <>
       <Nav profile={profile} />
-      <div className="px-4 py-8 ">
+      <div className="px-4 py-8">
         <h2 className="mt-20 mb-4 text-xl font-semibold font-sourcecode text-center sm:text-left">
           Top Artists
         </h2>
@@ -85,7 +85,7 @@ const Profile = () => {
           {topArtists.map((artist) => (
             <li
               key={artist.id}
-              className="p-4  rounded shadow-lg flex flex-col items-center"
+              className="p-4 rounded shadow-lg flex flex-col items-center"
             >
               <h3 className="text-lg font-bold font-inconsolata">
                 {artist.name}
@@ -112,21 +112,21 @@ const Profile = () => {
         <h2 className="mt-20 mb-4 text-xl font-semibold font-sourcecode text-center sm:text-left">
           Top Tracks
         </h2>
-        {topTracks.map((track) => (
-          <ul>
+        <ul className="space-y-4">
+          {topTracks.map((track) => (
             <li
               key={track.id}
               className="flex flex-col sm:flex-row items-center space-x-3"
             >
-              <h3 className=" text-l font-semibold font-inconsolata">
+              <h3 className="text-l font-semibold font-inconsolata">
                 {track.name}
               </h3>
               <h3 className="sm:mb-0 mb-4 text-sm font-semibold font-firacode">
                 {track.artists[0].name}
               </h3>
             </li>
-          </ul>
-        ))}
+          ))}
+        </ul>
       </div>
     </>
   );
