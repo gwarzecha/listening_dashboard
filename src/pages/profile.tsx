@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SpotifyArtist, UserProfile, SpotifyTrack } from '../types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
-import LogoutButton from '../app/components/LogoutButton';
+import Image from 'next/image';
 import Nav from '../app/components/Nav';
 
 const Profile = () => {
@@ -84,16 +84,18 @@ const Profile = () => {
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {topArtists.map((artist) => (
             <li
-              key={artist.name}
+              key={artist.id}
               className="p-4  rounded shadow-lg flex flex-col items-center"
             >
               <h3 className="text-lg font-bold font-inconsolata">
                 {artist.name}
               </h3>
               {artist.images.length > 0 && (
-                <img
+                <Image
                   src={artist.images[1].url}
-                  alt={`${artist.name} Image`}
+                  alt={`${artist.name} Spotify artist image`}
+                  width={128}
+                  height={128}
                   className="w-32 h-32 object-cover rounded-full"
                 />
               )}
@@ -113,7 +115,7 @@ const Profile = () => {
         {topTracks.map((track) => (
           <ul>
             <li
-              key={track.name}
+              key={track.id}
               className="flex flex-col sm:flex-row items-center space-x-3"
             >
               <h3 className=" text-l font-semibold font-inconsolata">

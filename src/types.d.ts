@@ -23,6 +23,7 @@ export interface Image {
 }
 
 export interface SpotifyArtist {
+  id: string;
   name: string;
   images: { url: string }[];
   genres: string[];
@@ -30,6 +31,7 @@ export interface SpotifyArtist {
 }
 
 export interface SpotifyTrack {
+  id: string;
   name: string;
   artists: SpotifyArtist[];
   album: {
