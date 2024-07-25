@@ -5,6 +5,7 @@ const LoginButton = () => {
   const authorize = () => {
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
     const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
+    console.log('Redirect URI:', redirectUri);
     const scopes = ['user-read-private', 'user-read-email', 'user-top-read'];
 
     const params = new URLSearchParams({
