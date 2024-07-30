@@ -20,7 +20,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const storedToken = localStorage.getItem('spotifyAccessToken');
-    console.log('Stored token in AuthProvider:', storedToken);
     if (storedToken) {
       setToken(storedToken);
     }

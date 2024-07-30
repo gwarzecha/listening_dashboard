@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import Image from 'next/image';
 import Nav from '../app/components/Nav';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 const Profile = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -70,8 +71,12 @@ const Profile = () => {
     fetchProfile();
   }, [router, token, loading]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!profile) return <div>Loading...</div>;
+  if (loading || !profile)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <>

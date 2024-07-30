@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 const Callback = () => {
   const router = useRouter();
@@ -26,7 +27,11 @@ const Callback = () => {
     if (code) fetchAccessToken(code as string);
   }, [router, setToken]);
 
-  return <div>Loading...</div>;
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <LoadingSpinner />
+    </div>
+  );
 };
 
 export default Callback;
