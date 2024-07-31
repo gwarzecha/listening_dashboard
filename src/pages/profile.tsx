@@ -121,7 +121,7 @@ const Profile = () => {
           {topTracks.map((track) => (
             <li
               key={track.id}
-              className="flex flex-col sm:flex-row items-center space-x-3"
+              className="flex flex-col sm:flex-row items-center text-center space-x-3"
             >
               <h3 className="text-l font-semibold font-inconsolata">
                 {track.name}
