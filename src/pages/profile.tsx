@@ -118,11 +118,14 @@ const Profile = () => {
           Top Tracks
         </h2>
         <ul className="space-y-4">
-          {topTracks.map((track) => (
+          {topTracks.map((track, idx) => (
             <li
               key={track.id}
-              className="flex flex-col sm:flex-row items-center text-center space-x-3"
+              className="flex flex-col sm:flex-row items-center text-center sm:space-x-3"
             >
+              <h3 className="text-l font-semibold font-inconsolata">
+                {idx + 1}.
+              </h3>
               <h3 className="text-l font-semibold font-inconsolata">
                 {track.name}
               </h3>
